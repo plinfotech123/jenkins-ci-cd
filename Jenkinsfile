@@ -39,8 +39,8 @@ pipeline{
 
         stage("Deploy Image to Hub"){
             steps{
-                withCredentials([string(credentialsId: 'dp', variable: 'dp')]) {
-                 sh 'docker login -u javatechie4u -p ${dp}'
+                withCredentials([string(credentialsId: 'docker_hub_cred', variable: 'docker_hub_cred')]) {
+                 sh 'docker login -u plinfotech123 -p ${docker_hub_cred}'
                  sh 'docker push ${IMAGE_NAME}:${IMAGE_TAG}'
                 }
             }
@@ -58,7 +58,7 @@ pipeline{
         <p>Build Number: ${BUILD_NUMBER}</p>
         <p>Check the <a href="${BUILD_URL}">console output</a>.</p>
     </body>
-</html>''', mimeType: 'text/html', replyTo: 'javatechie.learning@gmail.com', subject: 'Pipeline Status : ${BUILD_NUMBER}', to: 'javatechie.learning@gmail.com'
+</html>''', mimeType: 'text/html', replyTo: 'plinfotech123@gmail.com', subject: 'Pipeline Status : ${BUILD_NUMBER}', to: 'plinfotech123@gmail.com'
 
         }
     }
